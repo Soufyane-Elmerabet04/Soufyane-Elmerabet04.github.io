@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- SEO: change the title, description and canonical URL -->
+  <title>Your Name | Full-stack developer</title>
+  <meta name="description" content="Portfolio of Your Name, a full-stack developer building fast, accessible web apps.">
+  <link rel="canonical" href="https://your-username.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Your Name | Full-stack developer">
+  <meta property="og:description" content="Portfolio of Your Name, a full-stack developer building fast, accessible web apps.">
+  <meta name="theme-color" content="#0369A1">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230369A1'/%3E%3Ctext x='50' y='68' font-size='56' font-family='sans-serif' font-weight='700' text-anchor='middle' fill='%23E0F2FE'%3E%26lt;/%26gt;%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Source+Sans+3:wght@400;600&display=swap">
+
+  <style>
+    :root {
+      --page: #FFFFFF;
+      --surface: #F0F9FF;
+      --text: #0C2A3F;
+      --muted: #4A6478;
+      --line: #DCEBF5;
+      --line-strong: #B7D3E6;
+      --link: #0369A1;
+
+      /* Sky-blue gradients */
+      --btn-bg: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
+      --btn-ink: #FFFFFF;
+      --grad-deep: linear-gradient(155deg, #0369A1 0%, #075985 50%, #0C4A6E 100%);
+      --grad-cta: linear-gradient(135deg, #0284C7 0%, #075985 55%, #0C4A6E 100%);
+      --grad-text: linear-gradient(120deg, #0C4A6E 0%, #0284C7 100%);
+      --grad-dot: linear-gradient(135deg, #38BDF8 0%, #0369A1 100%);
+      --glow: rgba(56, 189, 248, .22);
+
+      --on-navy: #EAF6FE;
+      --on-navy-muted: #CFE9F8;
+      --accent: #38BDF8;
+      --accent-soft: #7DD3FC;
+      --accent-ink: #082F49;
+
+      --display: "Sora", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      --font: "Source Sans 3", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      color-scheme: light dark;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --page: #071521;
+        --surface: #0D2233;
+        --text: #E6F3FB;
+        --muted: #9DB8CB;
+        --line: #163247;
+        --line-strong: #2A4A62;
+        --link: #7DD3FC;
+        --btn-bg: linear-gradient(135deg, #BAE6FD 0%, #38BDF8 100%);
+        --btn-ink: #082F49;
+        --grad-deep: linear-gradient(155deg, #075985 0%, #0C4A6E 55%, #082F49 100%);
+        --grad-cta: linear-gradient(135deg, #0369A1 0%, #0C4A6E 55%, #082F49 100%);
+        --grad-text: linear-gradient(120deg, #E0F2FE 0%, #38BDF8 100%);
+        --glow: rgba(56, 189, 248, .14);
+      }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+    body {
+      margin: 0;
+      background: var(--page);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 1.125rem;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3, p { margin: 0; }
+    a { color: var(--link); }
+    :focus-visible { outline: 2px solid var(--link); outline-offset: 3px; border-radius: 3px; }
+    .ico { display: inline-flex; flex: none; }
+    .ico svg { width: 1.15em; height: 1.15em; display: block; }
+
+    .skip { position: absolute; left: 1rem; top: -4rem; z-index: 20; padding: .6rem 1rem; background: var(--accent-soft); color: var(--accent-ink); font-weight: 600; border-radius: 6px; }
+    .skip:focus { top: 1rem; }
+
+    /* ---------- Buttons ---------- */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: .55rem;
+      padding: .75rem 1.3rem; border: 1.5px solid transparent; border-radius: 8px;
+      font: 600 1rem/1.2 var(--font); text-decoration: none; cursor: pointer;
+      transition: filter .15s, border-color .15s, background-color .15s;
+    }
+    .btn-primary { background: var(--btn-bg); color: var(--btn-ink); }
+    .btn-primary:hover { filter: brightness(1.12); }
+    .btn-ghost { background: transparent; color: var(--text); border-color: var(--line-strong); }
+    .btn-ghost:hover { border-color: var(--link); }
+    .btn-sky { background: linear-gradient(135deg, #E0F2FE 0%, #38BDF8 100%); color: var(--accent-ink); }
+    .btn-sky:hover { filter: brightness(1.06); }
+    .btn-line { background: transparent; color: #fff; border-color: rgba(255, 255, 255, .4); }
+    .btn-line:hover { border-color: #fff; background: rgba(255, 255, 255, .08); }
+    .btn-sm { padding: .55rem 1rem; font-size: .975rem; }
+
+    /* ---------- Layout ---------- */
+    @media (min-width: 1024px) {
+      .layout { display: grid; grid-template-columns: 22rem minmax(0, 1fr); min-height: 100vh; }
+      .panel { position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+    }
+
+    /* ---------- Profile panel ---------- */
+    .panel {
+      display: flex; flex-direction: column; gap: 2rem;
+      padding: 2.5rem 2rem;
+      background: var(--grad-deep); color: var(--on-navy);
+    }
+    .panel :focus-visible { outline-color: #fff; }
+
+    .avatar {
+      width: 7.75rem; height: 7.75rem; padding: 4px; border-radius: 50%;
+      background: linear-gradient(135deg, #FFFFFF 0%, #7DD3FC 50%, #38BDF8 100%);
+    }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 50%; }
+    .initials {
+      width: 100%; height: 100%; display: grid; place-items: center; border-radius: 50%;
+      background: linear-gradient(135deg, #075985 0%, #0C4A6E 100%); color: var(--accent-soft);
+      font: 700 2.2rem/1 var(--display);
+    }
+
+    .pname { margin-top: 1.5rem; font: 700 1.7rem/1.15 var(--display); letter-spacing: -.02em; color: #fff; }
+    .prole { margin-top: .4rem; font-size: 1.1rem; color: var(--on-navy); }
+    .pmeta { display: flex; flex-direction: column; gap: .35rem; margin-top: 1rem; font-size: 1rem; color: var(--on-navy-muted); }
+    .pmeta > span { display: flex; align-items: center; gap: .55rem; }
+    .dot { width: .6rem; height: .6rem; margin: 0 .275rem; border-radius: 50%; background: #BAF7D0; box-shadow: 0 0 0 3px rgba(186, 247, 208, .25); flex: none; }
+
+    .pnav { display: flex; flex-direction: column; }
+    .pnav a {
+      display: flex; align-items: center; gap: 1rem; padding: .55rem 0;
+      color: var(--on-navy-muted); text-decoration: none; font-weight: 600;
+      transition: color .2s;
+    }
+    .pnav a::before {
+      content: ""; width: 1.25rem; height: 2px; background: currentColor; opacity: .5;
+      transition: width .25s, background-color .25s, opacity .25s;
+    }
+    .pnav a:hover { color: #fff; }
+    .pnav a[aria-current="location"] { color: #fff; }
+    .pnav a[aria-current="location"]::before { width: 2.75rem; background: #fff; opacity: 1; }
+
+    .pfoot { display: flex; flex-direction: column; gap: 1.25rem; margin-top: auto; }
+    .socials { display: flex; gap: .6rem; flex-wrap: wrap; }
+    .socials a {
+      width: 2.6rem; height: 2.6rem; display: grid; place-items: center; border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, .35); color: #fff; font-size: 1.05rem;
+      transition: background-color .15s, border-color .15s;
+    }
+    .socials a:hover { background: rgba(255, 255, 255, .14); border-color: #fff; }
+
+    @media (max-width: 1023px) {
+      .panel { padding: 2rem 1.25rem; gap: 1.5rem; }
+      .pnav { flex-direction: row; flex-wrap: wrap; gap: .1rem 1.5rem; }
+      .pnav a::before { display: none; }
+      .pnav a[aria-current="location"] { color: var(--accent-soft); }
+      .pfoot { margin-top: 0; }
+    }
+
+    /* ---------- Content ---------- */
+    .content {
+      padding-inline: clamp(1.25rem, 5vw, 4.5rem);
+      background: radial-gradient(52rem 26rem at 78% -3rem, var(--glow), transparent 70%) no-repeat;
+    }
+    .inner { min-width: 0; }
+    .block { max-width: 50rem; margin-inline: auto; padding-block: clamp(3rem, 7vw, 5rem); }
+    .block + .block { border-top: 1px solid var(--line); }
+    .inner > h2:not(.headline) { margin-bottom: 2rem; font: 700 1.9rem/1.2 var(--display); letter-spacing: -.02em; }
+
+    /* Hero */
+    .hero { padding-top: clamp(2.5rem, 8vw, 6rem); }
+    @media (prefers-reduced-motion: no-preference) {
+      .hero .inner { animation: rise .8s cubic-bezier(.2, .7, .2, 1) both; }
+      @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+    }
+    .headline {
+      max-width: 20ch; font: 700 clamp(2.2rem, 5.2vw, 3.6rem)/1.1 var(--display); letter-spacing: -.03em;
+      background: var(--grad-text); -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent; color: transparent;
+      padding-bottom: .1em;
+    }
+    .lead { margin-top: 1.5rem; max-width: 46ch; font-size: 1.25rem; color: var(--muted); }
+    .cta-row { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
+
+    /* Projects */
+    .project + .project { margin-top: 4rem; }
+    .frame { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--surface); }
+    .frame-bar { display: flex; align-items: center; gap: .4rem; padding: .65rem .85rem; border-bottom: 1px solid var(--line); }
+    .frame-bar i { width: .6rem; height: .6rem; border-radius: 50%; background: var(--line-strong); }
+    .frame-url {
+      flex: 1; max-width: 20rem; margin-left: .75rem; padding: .1rem .8rem; border-radius: 999px;
+      background: var(--page); color: var(--muted); font-size: .85rem;
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    .frame img { display: block; width: 100%; height: auto; }
+    .frame-fallback {
+      display: grid; place-items: center; aspect-ratio: 16 / 10; padding: 1.5rem; text-align: center;
+      background: linear-gradient(135deg, #38BDF8 0%, #0284C7 45%, #0C4A6E 100%);
+      color: #fff; font: 700 clamp(1.5rem, 4vw, 2.6rem)/1.1 var(--display); letter-spacing: -.02em;
+    }
+    .project-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-top: 1.5rem; }
+    .project h3 { font: 700 1.5rem/1.25 var(--display); letter-spacing: -.015em; }
+    .when { color: var(--muted); font-size: 1rem; white-space: nowrap; }
+    .project .desc { margin-top: .6rem; max-width: 60ch; color: var(--muted); }
+    .chips { display: flex; flex-wrap: wrap; gap: .45rem; margin: 1.1rem 0 0; padding: 0; list-style: none; }
+    .chips li {
+      padding: .2rem .7rem; border-radius: 6px; border: 1px solid var(--line);
+      background: var(--surface); color: var(--link); font-size: .925rem; font-weight: 600;
+    }
+    .project .actions { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.4rem; }
+
+    /* Experience timeline */
+    .timeline { list-style: none; margin: 0; padding: 0 0 0 1.75rem; border-left: 2px solid var(--line-strong); }
+    .job { position: relative; padding-bottom: 2.75rem; }
+    .job:last-child { padding-bottom: 0; }
+    .job::before {
+      content: ""; position: absolute; left: calc(-1.75rem - 7px); top: .5rem;
+      width: 12px; height: 12px; border-radius: 50%; background: var(--grad-dot); box-shadow: 0 0 0 4px var(--page);
+    }
+    .job h3 { font: 700 1.2rem/1.3 var(--display); letter-spacing: -.01em; }
+    .job .co { margin-top: .1rem; font-weight: 600; }
+    .job .co a { color: inherit; text-underline-offset: .2em; }
+    .job .when { display: block; margin-top: .1rem; }
+    .job ul { margin: .9rem 0 0; padding-left: 1.15rem; max-width: 60ch; color: var(--muted); }
+    .job li + li { margin-top: .35rem; }
+
+    /* About */
+    .about-text p { max-width: 60ch; }
+    .about-text p + p { margin-top: 1.1rem; }
+    .skill-groups { display: grid; gap: 1.75rem; margin-top: 2.5rem; }
+    .skill-groups h3 { font: 700 1rem/1.3 var(--display); }
+    .skill-groups .chips { margin-top: .6rem; }
+
+    /* Contact */
+    .cta-box {
+      padding: clamp(1.75rem, 5vw, 3.25rem); border-radius: 16px;
+      background: var(--grad-cta); color: var(--on-navy);
+    }
+    .cta-box :focus-visible { outline-color: #fff; }
+    .cta-box h2 { margin: 0; font: 700 clamp(1.8rem, 4vw, 2.5rem)/1.15 var(--display); letter-spacing: -.025em; color: #fff; max-width: 18ch; }
+    .cta-box p { margin-top: 1rem; max-width: 46ch; color: var(--on-navy-muted); }
+    .cta-box .cta-row { margin-top: 1.75rem; }
+
+    .foot { max-width: 50rem; margin-inline: auto; padding-block: 2rem 3rem; color: var(--muted); font-size: .95rem; border-top: 1px solid var(--line); }
+  </style>
+</head>
+
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <div class="layout">
+    <!-- ========== Profile panel ========== -->
+    <aside class="panel">
+      <div>
+        <div class="avatar" id="avatar"></div>
+        <h1 class="pname" id="pname">Your Name</h1>
+        <p class="prole" id="prole"></p>
+        <div class="pmeta">
+          <span id="ploc" hidden></span>
+          <span id="pstatus" hidden></span>
+        </div>
+      </div>
+
+      <nav class="pnav" id="pnav" aria-label="Primary"></nav>
+
+      <div class="pfoot">
+        <div class="socials" id="socials"></div>
+        <a class="btn btn-sky" id="cv" href="#" hidden></a>
+      </div>
+    </aside>
+
+    <!-- ========== Content ========== -->
+    <main class="content" id="main">
+      <section class="block hero" id="intro" aria-labelledby="headline">
+        <div class="inner">
+          <h2 class="headline" id="headline"></h2>
+          <p class="lead" id="lead"></p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#projects" id="btn-projects">View projects</a>
+            <a class="btn btn-ghost" href="#contact">Get in touch</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="block" id="projects" aria-labelledby="projects-h">
+        <div class="inner">
+          <h2 id="projects-h">Projects</h2>
+          <div id="projects-list"></div>
+        </div>
+      </section>
+
+      <section class="block" id="experience" aria-labelledby="experience-h">
+        <div class="inner">
+          <h2 id="experience-h">Experience</h2>
+          <ol class="timeline" id="experience-list"></ol>
+        </div>
+      </section>
+
+      <section class="block" id="about" aria-labelledby="about-h">
+        <div class="inner">
+          <h2 id="about-h">About</h2>
+          <div class="about-text" id="about-text"></div>
+          <div class="skill-groups" id="skills-list"></div>
+        </div>
+      </section>
+
+      <section class="block" id="contact" aria-labelledby="contact-h">
+        <div class="inner">
+          <div class="cta-box">
+            <h2 id="contact-h"></h2>
+            <p id="contact-text"></p>
+            <div class="cta-row">
+              <a class="btn btn-sky" id="mail" href="#"></a>
+              <button class="btn btn-line" id="copy" type="button">
+                <span id="copy-label" aria-live="polite">Copy address</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="foot">
+        <div class="inner" id="footer"></div>
+      </footer>
+    </main>
+  </div>
+
+  <noscript>
+    <p style="padding:1.5rem">This portfolio needs JavaScript to display its content.</p>
+  </noscript>
+
+  <script>
+    /* =====================================================================
+       EDIT ONLY THIS BLOCK. Everything below it builds the page from it.
+       - Hide a section by leaving its list empty, e.g. experience: []
+       - Photo: put a square image in an "images" folder (photo: "images/me.jpg").
+         Leave photo: "" to show your initials instead.
+       - Leave resume: "" to hide the CV button.
+       ===================================================================== */
+    const site = {
+      name: "Your Name",
+      role: "Full-stack developer",
+      location: "City, Country",              // "" to hide
+      status: "Open to new opportunities",    // "" to hide
+      photo: "",                              // e.g. "images/me.jpg"
+      resume: "resume.pdf",                   // put resume.pdf next to index.html
+
+      headline: "I build fast, accessible web apps that people enjoy using.",
+      intro: "I work across the stack, from database design to polished interfaces, and care about performance, clean code and shipping on time.",
+
+      email: "you@example.com",
+      contactTitle: "Have a project or a role in mind?",
+      contactText: "I am always happy to talk about new work. Send me a short message and I will reply within two working days.",
+
+      links: [
+        { label: "GitHub",   url: "https://github.com/your-username" },
+        { label: "LinkedIn", url: "https://www.linkedin.com/in/your-username" }
+        // { label: "X", url: "https://x.com/your-username" }
+      ],
+
+      projects: [
+        {
+          title: "Project one",
+          year: "2026",
+          description: "One or two sentences: what it does, who it is for, and the result you achieved (users, speed, savings).",
+          tags: ["TypeScript", "React", "PostgreSQL"],
+          links: [
+            { label: "Live demo", url: "https://example.com" },
+            { label: "Source code", url: "https://github.com/your-username/project-one" }
+          ],
+          image: { src: "images/project-one.webp", alt: "Screenshot of Project one", width: 1600, height: 1000 }
+        },
+        {
+          title: "Project two",
+          year: "2025",
+          description: "Describe the problem you solved and the most interesting technical decision you made along the way.",
+          tags: ["Python", "FastAPI", "Docker"],
+          links: [{ label: "Source code", url: "https://github.com/your-username/project-two" }]
+          // No image? A clean placeholder with the project name is shown.
+        },
+        {
+          title: "Project three",
+          year: "2024",
+          description: "Keep it short. Recruiters skim, so lead with the outcome.",
+          tags: ["Node.js", "Redis"],
+          links: [{ label: "Live demo", url: "https://example.com" }]
+        }
+      ],
+
+      experience: [
+        {
+          period: "2024 to present",
+          role: "Software developer",
+          company: "Company name",
+          url: "",                             // optional company website
+          points: [
+            "Built X, which reduced Y by Z%.",
+            "Led the migration of A to B."
+          ]
+        },
+        {
+          period: "2022 to 2024",
+          role: "Junior developer",
+          company: "Another company",
+          points: ["Shipped features used by N customers."]
+        }
+      ],
+
+      about: [
+        "Write two short paragraphs: who you are, what you enjoy building, and what you are looking for next.",
+        "Add something personal that makes you memorable."
+      ],
+
+      skills: [
+        { group: "Languages", items: ["TypeScript", "Python", "SQL"] },
+        { group: "Frontend",  items: ["React", "Astro", "Tailwind CSS"] },
+        { group: "Backend",   items: ["Node.js", "FastAPI", "PostgreSQL"] },
+        { group: "Tools",     items: ["Git", "Docker", "GitHub Actions"] }
+      ]
+    };
+
+    /* ============================ Renderer ============================ */
+    const $ = (id) => document.getElementById(id);
+
+    const ICONS = {
+      github: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2 0-.4-.5-1.6.2-3.2 0 0 1-.3 3.3 1.2a11.500 11.500 0 0 1 6 0C17.300 4.700 18.300 5 18.300 5c.7 1.700.2 2.900.1 3.200.8.800 1.200 1.900 1.200 3.200 0 4.600-2.800 5.600-5.500 5.900.4.400.8 1.100.8 2.200v3.300c0 .3.2.7.800.6A12 12 0 0 0 12 .3"/></svg>',
+      linkedin: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.400 20.500h-3.600v-5.600c0-1.300 0-3-1.800-3s-2.100 1.400-2.100 2.900v5.700H9.300V9h3.400v1.600c.5-.9 1.600-1.900 3.400-1.900 3.600 0 4.300 2.400 4.300 5.500v6.300zM5.300 7.400a2.100 2.100 0 1 1 0-4.200 2.100 2.100 0 0 1 0 4.200zM7.100 20.500H3.600V9h3.500v11.500zM22.200 0H1.800C.8 0 0 .8 0 1.700v20.600c0 .9.800 1.700 1.800 1.700h20.400c1 0 1.800-.8 1.800-1.700V1.700C24 .8 23.200 0 22.200 0z"/></svg>',
+      x: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.200 2.300h3.300l-7.200 8.300 8.500 11.200h-6.700l-5.200-6.800-6 6.800H1.700l7.700-8.800L1.300 2.300h6.800l4.700 6.200 5.400-6.200zm-1.200 17.500h1.800L7.100 4.100H5.100l11.900 15.700z"/></svg>',
+      mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>',
+      globe: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>',
+      pin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.200 7-11a7 7 0 1 0-14 0c0 4.800 7 11 7 11z"/><circle cx="12" cy="10" r="2.500"/></svg>',
+      download: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>'
+    };
+
+    function icon(name) {
+      const s = document.createElement("span");
+      s.className = "ico";
+      s.setAttribute("aria-hidden", "true");
+      s.innerHTML = ICONS[name] || ICONS.globe;   // static, trusted strings only
+      return s;
+    }
+
+    function el(tag, attrs = {}, ...kids) {
+      const node = document.createElement(tag);
+      for (const [k, v] of Object.entries(attrs)) {
+        if (v == null || v === false) continue;
+        if (k === "class") node.className = v; else node.setAttribute(k, v);
+      }
+      for (const kid of kids.flat()) {
+        if (kid == null || kid === false) continue;
+        node.append(kid.nodeType ? kid : document.createTextNode(kid));
+      }
+      return node;
+    }
+
+    const isExternal = (u) => /^https?:\/\//i.test(u);
+    const extAttrs = (u) => isExternal(u) ? { target: "_blank", rel: "noopener noreferrer" } : {};
+
+    function guessIcon(l) {
+      if (l.icon) return l.icon;
+      const k = (l.label + " " + l.url).toLowerCase();
+      if (k.includes("github")) return "github";
+      if (k.includes("linkedin")) return "linkedin";
+      if (k.includes("twitter") || k.includes("x.com")) return "x";
+      if (k.includes("mailto") || k.includes("mail")) return "mail";
+      return "globe";
+    }
+
+    /* ---- Head + profile panel ---- */
+    document.title = `${site.name} | ${site.role}`;
+    $("pname").textContent = site.name;
+    $("prole").textContent = site.role;
+
+    const initials = site.name.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0].toUpperCase()).join("");
+    const showInitials = () => $("avatar").replaceChildren(el("span", { class: "initials", "aria-hidden": "true" }, initials));
+    if (site.photo) {
+      const img = el("img", { src: site.photo, alt: `Photo of ${site.name}`, width: 240, height: 240, decoding: "async" });
+      img.onerror = showInitials;
+      $("avatar").append(img);
+    } else showInitials();
+
+    if (site.location) { $("ploc").append(icon("pin"), site.location); $("ploc").hidden = false; }
+    if (site.status) { $("pstatus").append(el("i", { class: "dot" }), site.status); $("pstatus").hidden = false; }
+
+    (site.links || []).forEach((l) => {
+      $("socials").append(el("a", { href: l.url, "aria-label": l.label, title: l.label, ...extAttrs(l.url) }, icon(guessIcon(l))));
+    });
+    if (site.email) {
+      $("socials").append(el("a", { href: `mailto:${site.email}`, "aria-label": "Email", title: "Email" }, icon("mail")));
+    }
+    if (site.resume) {
+      const cv = $("cv");
+      cv.href = site.resume;
+      cv.setAttribute("download", "");
+      cv.append(icon("download"), "Download CV");
+      cv.hidden = false;
+    }
+
+    /* ---- Hero ---- */
+    $("headline").textContent = site.headline;
+    $("lead").textContent = site.intro;
+
+    /* ---- Projects ---- */
+    function hostOf(p) {
+      const live = (p.links || []).find((x) => /live|demo|site|visit/i.test(x.label) && isExternal(x.url));
+      if (live) { try { return new URL(live.url).hostname.replace(/^www\./, ""); } catch (e) {} }
+      return p.title.toLowerCase().replace(/\s+/g, "-");
+    }
+
+    function frame(p) {
+      const bar = el("div", { class: "frame-bar", "aria-hidden": "true" }, el("i"), el("i"), el("i"), el("span", { class: "frame-url" }, hostOf(p)));
+      const fallback = () => el("div", { class: "frame-fallback", "aria-hidden": "true" }, p.title);
+      let body;
+      if (p.image) {
+        body = el("img", { src: p.image.src, alt: p.image.alt || "", width: p.image.width, height: p.image.height, loading: "lazy", decoding: "async" });
+        body.onerror = () => body.replaceWith(fallback());   // missing file: show placeholder
+      } else body = fallback();
+      return el("div", { class: "frame" }, bar, body);
+    }
+
+    const projects = site.projects || [];
+    $("projects").hidden = projects.length === 0;
+    projects.forEach((p) => {
+      $("projects-list").append(el("article", { class: "project" },
+        frame(p),
+        el("div", { class: "project-head" }, el("h3", {}, p.title), p.year && el("span", { class: "when" }, p.year)),
+        el("p", { class: "desc" }, p.description),
+        p.tags && p.tags.length ? el("ul", { class: "chips" }, p.tags.map((t) => el("li", {}, t))) : null,
+        p.links && p.links.length
+          ? el("div", { class: "actions" }, p.links.map((l, i) =>
+              el("a", { class: `btn btn-sm ${i === 0 ? "btn-primary" : "btn-ghost"}`, href: l.url, ...extAttrs(l.url) }, l.label)))
+          : null
+      ));
+    });
+
+    /* ---- Experience ---- */
+    const jobs = site.experience || [];
+    $("experience").hidden = jobs.length === 0;
+    jobs.forEach((j) => {
+      const company = j.url ? el("a", { href: j.url, ...extAttrs(j.url) }, j.company) : j.company;
+      $("experience-list").append(el("li", { class: "job" },
+        el("h3", {}, j.role),
+        el("p", { class: "co" }, company),
+        el("span", { class: "when" }, j.period),
+        j.points && j.points.length ? el("ul", {}, j.points.map((x) => el("li", {}, x))) : null
+      ));
+    });
+
+    /* ---- About + skills ---- */
+    (site.about || []).forEach((t) => $("about-text").append(el("p", {}, t)));
+    (site.skills || []).forEach((s) => {
+      $("skills-list").append(el("div", {}, el("h3", {}, s.group), el("ul", { class: "chips" }, s.items.map((i) => el("li", {}, i)))));
+    });
+    $("about").hidden = !(site.about || []).length && !(site.skills || []).length;
+
+    /* ---- Contact ---- */
+    $("contact-h").textContent = site.contactTitle;
+    $("contact-text").textContent = site.contactText;
+    $("mail").href = `mailto:${site.email}`;
+    $("mail").append(icon("mail"), "Email me");
+    $("copy").addEventListener("click", async () => {
+      try { await navigator.clipboard.writeText(site.email); }
+      catch (e) {
+        const t = el("textarea", { readonly: "" }); t.value = site.email;
+        document.body.append(t); t.select();
+        try { document.execCommand("copy"); } catch (_) {}
+        t.remove();
+      }
+      $("copy-label").textContent = "Copied";
+      setTimeout(() => ($("copy-label").textContent = "Copy address"), 2000);
+    });
+
+    /* ---- Footer ---- */
+    $("footer").textContent = `\u00A9 ${new Date().getFullYear()} ${site.name}. Built with plain HTML, CSS and JavaScript.`;
+
+    /* ---- Sidebar navigation with active-section marker ---- */
+    const sections = [
+      { id: "intro", label: "Intro" },
+      { id: "projects", label: "Projects" },
+      { id: "experience", label: "Experience" },
+      { id: "about", label: "About" },
+      { id: "contact", label: "Contact" }
+    ].filter((s) => !$(s.id).hidden);
+
+    sections.forEach((s) => $("pnav").append(el("a", { href: `#${s.id}` }, s.label)));
+    const navLinks = [...$("pnav").children];
+    const setCurrent = (id) => navLinks.forEach((a) =>
+      a.getAttribute("href") === `#${id}` ? a.setAttribute("aria-current", "location") : a.removeAttribute("aria-current"));
+    setCurrent(sections[0].id);
+
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => { if (e.isIntersecting) setCurrent(e.target.id); });
+      }, { rootMargin: "-35% 0px -60% 0px" });
+      sections.forEach((s) => io.observe($(s.id)));
+    }
+    if ($("projects").hidden) $("btn-projects").hidden = true;
+  </script>
+</body>
+</html>
